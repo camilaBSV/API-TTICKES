@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Environment
+.env
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+*.tar.gz
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
