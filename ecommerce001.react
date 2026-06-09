@@ -1,0 +1,88 @@
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+export default function MacrameStore() {
+  const [products, setProducts] = useState([
+    { id: 1, name: "Tapiz de Macramé", price: 25, stock: 1 },
+    { id: 2, name: "Porta macetas", price: 15, stock: 3 }
+  ]);
+
+  const [cart, setCart] = useState([]);
+  const [reviews, setReviews] = useState([]);
+
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  };
+
+  const addProduct = () => {
+    const name = prompt("Nombre del producto:");
+    const price = parseFloat(prompt("Precio:"));
+    const stock = parseInt(prompt("Cantidad:"));
+
+    const newProduct = {
+      id: Date.now(),
+      name,
+      price,
+      stock
+    };
+
+    setProducts([...products, newProduct]);
+  };
+
+  const removeProduct = (id) => {
+    setProducts(products.filter((p) => p.id !== id));
+  };
+
+  const checkout = () => {
+    alert("Compra realizada. Se enviará comprobante por correo.");
+    setCart([]);
+  };
+
+  const addReview = () => {
+    const text = prompt("Deja tu opinión:");
+    setReviews([...reviews, text]);
+  };
+
+  return (
+    <div className="p-4 grid gap-6">
+      <h1 className="text-2xl font-bold">Tienda de Macramé</h1>
+
+      <Button onClick={addProduct}>Agregar producto (Admin)</Button>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {products.map((p) => (
+          <Card key={p.id}>
+            <CardContent className="p-4">
+              <h2 className="text-lg font-semibold">{p.name}</h2>
+              <p>${p.price}</p>
+              <p>Stock: {p.stock}</p>
+              <Button onClick={() => addToCart(p)}>Comprar</Button>
+              <Button variant="destructive" onClick={() => removeProduct(p.id)}>
+                Eliminar
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <div>
+        <h2 className="text-xl">Carrito</h2>
+        {cart.map((item, index) => (
+          <p key={index}>{item.name} - ${item.price}</p>
+        ))}
+        {cart.length > 0 && (
+          <Button onClick={checkout}>Finalizar compra</Button>
+        )}
+      </div>
+
+      <div>
+        <h2 className="text-xl">Opiniones de clientes</h2>
+        <Button onClick={addReview}>Agregar opinión</Button>
+        {reviews.map((r, i) => (
+          <p key={i}>"{r}"</p>
+        ))}
+      </div>
+    </div>
+  );
+}

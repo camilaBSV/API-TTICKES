@@ -1,7 +1,8 @@
-# API de Gestión de Solicitudes de Soporte Técnico
+# API mínima
 
-API REST para centralizar, ordenar y dar seguimiento a solicitudes de soporte técnico.  
-**Stack:** Python 3.11+ · FastAPI · PyMongo · MongoDB Atlas
+Versión simplificada para correr la API con lo mínimo necesario.
+
+**Stack:** Python 3.11+ · FastAPI · Uvicorn
 
 ---
 

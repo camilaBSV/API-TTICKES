@@ -1,0 +1,110 @@
+Collecting fastapi==0.111.0 (from -r requirements.txt (line 1))
+  Using cached fastapi-0.111.0-py3-none-any.whl.metadata (25 kB)
+Collecting uvicorn==0.29.0 (from uvicorn[standard]==0.29.0->-r requirements.txt (line 2))
+  Using cached uvicorn-0.29.0-py3-none-any.whl.metadata (6.3 kB)
+Collecting pymongo==4.7.2 (from -r requirements.txt (line 3))
+  Using cached pymongo-4.7.2-cp313-cp313-win_amd64.whl
+Collecting python-dotenv==1.0.1 (from -r requirements.txt (line 4))
+  Using cached python_dotenv-1.0.1-py3-none-any.whl.metadata (23 kB)
+Collecting python-jose==3.3.0 (from python-jose[cryptography]==3.3.0->-r requirements.txt (line 5))
+  Using cached python_jose-3.3.0-py2.py3-none-any.whl.metadata (5.4 kB)
+Collecting passlib==1.7.4 (from passlib[bcrypt]==1.7.4->-r requirements.txt (line 6))
+  Using cached passlib-1.7.4-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting python-multipart==0.0.9 (from -r requirements.txt (line 7))
+  Using cached python_multipart-0.0.9-py3-none-any.whl.metadata (2.5 kB)
+Collecting pydantic==2.7.1 (from -r requirements.txt (line 8))
+  Using cached pydantic-2.7.1-py3-none-any.whl.metadata (107 kB)
+Collecting pytest==8.2.0 (from -r requirements.txt (line 9))
+  Using cached pytest-8.2.0-py3-none-any.whl.metadata (7.5 kB)
+Collecting pytest-cov==5.0.0 (from -r requirements.txt (line 10))
+  Using cached pytest_cov-5.0.0-py3-none-any.whl.metadata (27 kB)
+Collecting httpx==0.27.0 (from -r requirements.txt (line 11))
+  Using cached httpx-0.27.0-py3-none-any.whl.metadata (7.2 kB)
+Collecting starlette<0.38.0,>=0.37.2 (from fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached starlette-0.37.2-py3-none-any.whl.metadata (5.9 kB)
+Collecting typing-extensions>=4.8.0 (from fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting fastapi-cli>=0.0.2 (from fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached fastapi_cli-0.0.24-py3-none-any.whl.metadata (6.4 kB)
+Collecting jinja2>=2.11.2 (from fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting ujson!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0,>=4.0.1 (from fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached ujson-5.12.1-cp313-cp313-win_amd64.whl.metadata (9.8 kB)
+Collecting orjson>=3.2.1 (from fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached orjson-3.11.9-cp313-cp313-win_amd64.whl.metadata (43 kB)
+Collecting email_validator>=2.0.0 (from fastapi==0.111.0->-r requirements.txt (line 1))
+  Using cached email_validator-2.3.0-py3-none-any.whl.metadata (26 kB)
+Collecting annotated-types>=0.4.0 (from pydantic==2.7.1->-r requirements.txt (line 8))
+  Using cached annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.18.2 (from pydantic==2.7.1->-r requirements.txt (line 8))
+  Using cached pydantic_core-2.18.2.tar.gz (383 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Installing backend dependencies: started
+  Installing backend dependencies: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'error'
+  error: subprocess-exited-with-error
+  
+  Preparing metadata (pyproject.toml) did not run successfully.
+  exit code: 1
+  
+  [42 lines of output]
+  Python reports SOABI: cp313-win_amd64
+  Computed rustc target triple: x86_64-pc-windows-msvc
+  Installation directory: C:\Users\Hp\AppData\Local\puccinialin\puccinialin\Cache
+  Rustup already downloaded
+  Installing rust to C:\Users\Hp\AppData\Local\puccinialin\puccinialin\Cache\rustup
+  warn: It looks like you have an existing rustup settings file at:
+  warn: C:\Users\Hp\AppData\Local\puccinialin\puccinialin\Cache\rustup\settings.toml
+  warn: Rustup will install the default toolchain as specified in the settings file,
+  warn: instead of the one inferred from the default host triple.
+  warn: installing msvc toolchain without its prerequisites
+  error: could not read metadata for file: 'C:\Users\Hp\AppData\Local\puccinialin\puccinialin\Cache\rustup-init\rustup-init.exe': El sistema no puede encontrar la ruta especificada. (os error 3)
+  Checking for Rust toolchain....
+  Rust not found, installing into a temporary directory
+  Traceback (most recent call last):
+    File "C:\Users\Hp\Desktop\Api-tickets\Proyecto-BD\API-TTICKES\venv\Lib\site-packages\pip\_vendor\pyproject_hooks\_in_process\_in_process.py", line 389, in <module>
+      main()
+      ~~~~^^
+    File "C:\Users\Hp\Desktop\Api-tickets\Proyecto-BD\API-TTICKES\venv\Lib\site-packages\pip\_vendor\pyproject_hooks\_in_process\_in_process.py", line 373, in main
+      json_out["return_val"] = hook(**hook_input["kwargs"])
+                               ~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\Hp\Desktop\Api-tickets\Proyecto-BD\API-TTICKES\venv\Lib\site-packages\pip\_vendor\pyproject_hooks\_in_process\_in_process.py", line 175, in prepare_metadata_for_build_wheel
+      return hook(metadata_directory, config_settings)
+    File "C:\Users\Hp\AppData\Local\Temp\pip-build-env-ez8m45zx\overlay\Lib\site-packages\maturin\__init__.py", line 202, in prepare_metadata_for_build_wheel
+      env = _get_env()
+    File "C:\Users\Hp\AppData\Local\Temp\pip-build-env-ez8m45zx\overlay\Lib\site-packages\maturin\__init__.py", line 83, in _get_env
+      extra_env = setup_rust()
+    File "C:\Users\Hp\AppData\Local\Temp\pip-build-env-ez8m45zx\normal\Lib\site-packages\puccinialin\_setup_rust.py", line 138, in setup_rust
+      install_rust(rustup_init, rustup_home, cargo_home, file, target_triple)
+      ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\Hp\AppData\Local\Temp\pip-build-env-ez8m45zx\normal\Lib\site-packages\puccinialin\_setup_rust.py", line 73, in install_rust
+      check_call(
+      ~~~~~~~~~~^
+          [
+          ^
+      ...<15 lines>...
+          stderr=file,
+          ^^^^^^^^^^^^
+      )
+      ^
+    File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 419, in check_call
+      raise CalledProcessError(retcode, cmd)
+  subprocess.CalledProcessError: Command '[WindowsPath('C:/Users/Hp/AppData/Local/puccinialin/puccinialin/Cache/rustup-init/rustup-init.exe'), '-y', '--no-modify-path', '--profile', 'minimal', '--default-host', 'x86_64-pc-windows-msvc']' returned non-zero exit status 1.
+  [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+
+[notice] A new release of pip is available: 26.0.1 -> 26.1.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
+error: metadata-generation-failed
+
+Encountered error while generating package metadata.
+
+pydantic-core
+
+note: This is an issue with the package mentioned above, not pip.
+hint: See above for details.
