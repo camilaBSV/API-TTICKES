@@ -8,7 +8,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, Query
 from pymongo.collection import Collection
 
-from app.core.database import get_collection
+from app.core import database as database_utils
 from app.core.security import get_current_user, require_role
 from app.models.solicitud import (
     SolicitudAsignacion,
@@ -20,13 +20,18 @@ from app.services import solicitud_service
 router = APIRouter(prefix="/api/solicitudes", tags=["Solicitudes"])
 
 
+def get_collection():
+    """Dependencia local para que las pruebas puedan mockearla por ruta del módulo."""
+    return database_utils.get_collection()
+
+
 # ── Crear solicitud ───────────────────────────────────────────────────────────
 
 @router.post("", status_code=201, summary="Crear solicitud de soporte")
 def crear(
     datos: SolicitudCreate,
     current_user: dict = Depends(get_current_user),
-    col: Collection = Depends(get_collection),
+    col: Collection = Depends(lambda: get_collection()),
 ):
     """
     Crea una nueva solicitud de soporte técnico en la colección `COLECCION`.
@@ -45,7 +50,7 @@ def listar(
     skip: int = Query(0, ge=0),
     limit: int = Query(20, ge=1, le=100),
     current_user: dict = Depends(get_current_user),
-    col: Collection = Depends(get_collection),
+    col: Collection = Depends(lambda: get_collection()),
 ):
     """
     Lista solicitudes con filtros opcionales.
@@ -64,7 +69,7 @@ def listar(
 def obtener(
     solicitud_id: str,
     current_user: dict = Depends(get_current_user),
-    col: Collection = Depends(get_collection),
+    col: Collection = Depends(lambda: get_collection()),
 ):
     """
     Retorna una solicitud específica.
@@ -88,7 +93,7 @@ def actualizar_estado(
     solicitud_id: str,
     datos: SolicitudEstadoUpdate,
     current_user: dict = Depends(get_current_user),
-    col: Collection = Depends(get_collection),
+    col: Collection = Depends(lambda: get_collection()),
 ):
     """
     Cambia el estado de una solicitud.
@@ -109,7 +114,7 @@ def asignar(
     solicitud_id: str,
     datos: SolicitudAsignacion,
     current_user: dict = Depends(get_current_user),
-    col: Collection = Depends(get_collection),
+    col: Collection = Depends(lambda: get_collection()),
 ):
     """
     Asigna la solicitud a un miembro del equipo de soporte.

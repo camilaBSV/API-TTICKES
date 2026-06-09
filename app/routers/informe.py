@@ -5,11 +5,16 @@ Endpoint de informe MVP con métricas de solicitudes.
 from fastapi import APIRouter, Depends
 from pymongo.collection import Collection
 
-from app.core.database import get_collection
+from app.core import database as database_utils
 from app.core.security import require_role
 from app.services import informe_service
 
 router = APIRouter(prefix="/api/informe", tags=["Informe"])
+
+
+def get_collection():
+    """Dependencia local para que las pruebas puedan mockearla por ruta del módulo."""
+    return database_utils.get_collection()
 
 
 @router.get(
@@ -17,7 +22,7 @@ router = APIRouter(prefix="/api/informe", tags=["Informe"])
     summary="Informe de métricas MVP",
     dependencies=[Depends(require_role("soporte", "administrador"))],
 )
-def informe(col: Collection = Depends(get_collection)):
+def informe(col: Collection = Depends(lambda: get_collection())):
     """
     Retorna métricas del sistema desde la colección `COLECCION`:
     - Total de solicitudes

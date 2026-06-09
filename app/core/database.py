@@ -3,9 +3,10 @@ core/database.py
 Conexión a MongoDB Atlas usando DATABASE_URL y COLECCION definidas en .env.
 """
 import logging
+from urllib.parse import urlparse
+
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
-from pymongo.uri_parser import parse_uri
 
 from app.core.config import settings
 
@@ -14,15 +15,28 @@ logger = logging.getLogger(__name__)
 _client: MongoClient | None = None
 
 
+class _PlaceholderCollection:
+    """Colección de respaldo para evitar errores de validación antes del uso real de la base."""
+
+    def __getattr__(self, name):
+        raise ValueError("DATABASE_URL debe incluir un database name válido para usar la API con MongoDB.")
+
+
 def validate_database_url(database_url: str) -> str:
     """Valida que la URI de Mongo incluya el nombre de la base de datos."""
     if not database_url or not database_url.strip():
         raise ValueError("DATABASE_URL no está definido. Definí la variable en Render.")
 
-    parsed = parse_uri(database_url)
-    if not parsed.get("database"):
+    parsed = urlparse(database_url)
+    if parsed.scheme not in {"mongodb", "mongodb+srv"}:
         raise ValueError(
-            "DATABASE_URL debe incluir /<database-name>, por ejemplo: "
+            "DATABASE_URL debe ser una URI de MongoDB válida, por ejemplo: "
+            "mongodb+srv://USER:PASS@cluster0.example.mongodb.net/soporte?appName=Cluster0"
+        )
+
+    if not parsed.path or parsed.path.strip("/") == "":
+        raise ValueError(
+            "DATABASE_URL debe incluir un database name válido, por ejemplo: "
             "mongodb+srv://USER:PASS@cluster0.example.mongodb.net/soporte?appName=Cluster0"
         )
 
@@ -52,6 +66,13 @@ def get_db():
 
 def get_collection():
     """Retorna la colección definida en la variable COLECCION (.env)."""
+    parsed = urlparse(settings.DATABASE_URL)
+    if not settings.DATABASE_URL or not parsed.path or parsed.path.strip("/") == "":
+        logger.warning(
+            "DATABASE_URL sin nombre de base de datos. Se usa un placeholder hasta que la URL sea válida en Render."
+        )
+        return _PlaceholderCollection()
+
     db = get_db()
     return db[settings.COLECCION]
 
